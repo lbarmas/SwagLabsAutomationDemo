@@ -8,7 +8,7 @@ public class ConfigLoader {
 
     public ConfigLoader() throws Exception {
         properties = new Properties();
-        FileInputStream fileInputStream = new FileInputStream("config.properties");
+        FileInputStream fileInputStream = new FileInputStream("src/main/resources/config.properties");
         properties.load(fileInputStream);
     }
 

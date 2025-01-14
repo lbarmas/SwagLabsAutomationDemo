@@ -62,8 +62,8 @@
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber5-jvm</artifactId>
-            <version>2.13.8</version>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>2.29.1</version>
             <scope>test</scope>
         </dependency>
 
