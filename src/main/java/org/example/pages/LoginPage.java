@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
-    private AppiumDriver<MobileElement> driver;
+    private final AppiumDriver<MobileElement> driver;
     public static final String USERNAME_XPATH = "//android.widget.EditText[@content-desc=\"test-Username\"]";
     public static final String PASSWORD_XPATH = "//android.widget.EditText[@content-desc=\"test-Password\"]";
     public static final String LOGIN_BUTTON_XPATH = "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]";

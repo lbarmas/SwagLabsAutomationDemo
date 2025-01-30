@@ -1,4 +1,4 @@
-@addProduct
+@Feature_File_addProduct @addProduct
 Feature: Add Product to Cart
 
   Scenario: Add a product to the cart

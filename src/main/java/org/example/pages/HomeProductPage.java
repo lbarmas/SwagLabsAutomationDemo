@@ -13,8 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomeProductPage {
     private final AppiumDriver<MobileElement> driver;
-    private static final String HOME_ICON_XPATH = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView[2]";
-    private static final String cartBadgeXpath = "//android.view.ViewGroup[@content-desc=\"test-Cart\"]/android.view.ViewGroup/android.widget.TextView";
+    private static final String HOME_ICON_XPATH = "//android.widget.ImageView[@content-desc='home']";
+    private static final String CART_BADGE_XPATH = "//android.view.ViewGroup[@content-desc='test-Cart']/android.view.ViewGroup/android.widget.TextView";
+    private static final String PRODUCT_XPATH = "(//android.view.ViewGroup[@content-desc='test-ADD TO CART'])[1]/android.widget.TextView";
     @FindBy(xpath = HOME_ICON_XPATH)
     private MobileElement homeTitle;
 
@@ -30,16 +31,16 @@ public class HomeProductPage {
     public void selectProduct() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(HOME_ICON_XPATH)));
-        String productXpath = "(//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"])[1]/android.widget.TextView";
-        MobileElement productElement = driver.findElement(By.xpath(productXpath));
+        MobileElement productElement = driver.findElement(By.xpath(PRODUCT_XPATH));
         productElement.click();
     }
     public boolean isProductAddedToCart() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(cartBadgeXpath)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CART_BADGE_XPATH)));
 
-            MobileElement cartBadge = driver.findElement(By.xpath(cartBadgeXpath));
+            MobileElement cartBadge = driver.findElement(By.xpath(CART_BADGE_XPATH));
+
             String badgeText = cartBadge.getText();
             int itemCount = Integer.parseInt(badgeText);
             return itemCount > 0;
