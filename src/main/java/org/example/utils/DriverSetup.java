@@ -11,13 +11,15 @@ public class DriverSetup {
     protected AppiumDriver<MobileElement> driver;
 
     @BeforeTest
-    public void setup(){
-        try {
-            ConfigLoader configLoader = new ConfigLoader();
-            DesiredCapabilities capabilities = getCapabilities(configLoader);
-            driver = new AppiumDriver<>(new URL(configLoader.get("serverUrl")), capabilities);
-        } catch (Exception e) {
-            throw new RuntimeException("Error during driver setup: " + e.getMessage(), e);
+    public void setup() {
+        if (driver == null) {
+            try {
+                ConfigLoader configLoader = new ConfigLoader();
+                DesiredCapabilities capabilities = getCapabilities(configLoader);
+                driver = new AppiumDriver<>(new URL(configLoader.get("serverUrl")), capabilities);
+            } catch (Exception e) {
+                throw new RuntimeException("Error during driver setup: " + e.getMessage(), e);
+            }
         }
     }
 
@@ -31,6 +33,8 @@ public class DriverSetup {
         capabilities.setCapability("app", configLoader.get("appPath"));
         capabilities.setCapability("appActivity", configLoader.get("appActivity"));
         capabilities.setCapability("appWaitActivity", configLoader.get("appWaitActivity"));
+        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.*");
+
         return capabilities;
     }
 
