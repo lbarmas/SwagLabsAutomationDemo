@@ -10,12 +10,12 @@ import org.testng.Assert;
 
 public class AddProductSteps extends DriverSetup {
     private HomeProductPage homeProductPage;
+    private LoginPage loginPage;
+
     @Given("the user is logged into the SwagLabs app")
-    public void theUserIsLoggedIntoTheSwagLabsApp(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsername("standard_user");
-        loginPage.enterPassword("secret_sauce");
-        loginPage.clickLoginButton("standard_user", "secret_sauce");
+    public void theUserIsLoggedIntoTheSwagLabsApp() {
+        loginPage = new LoginPage(driver);
+        loginToApp();
         homeProductPage = new HomeProductPage(driver);
     }
 
@@ -27,5 +27,11 @@ public class AddProductSteps extends DriverSetup {
     @Then("the product is added to the cart successfully")
     public void theProductIsAddedToTheCartSuccessfully() {
         Assert.assertTrue(homeProductPage.isProductAddedToCart());
+    }
+
+    private void loginToApp() {
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickLoginButton("standard_user", "secret_sauce");
     }
 }
