@@ -8,7 +8,7 @@ import org.example.pages.LoginPage;
 import org.example.utils.DriverSetup;
 import org.testng.Assert;
 
-public class AddProductSteps extends DriverSetup {
+public class HomeProductSteps extends DriverSetup {
     private HomeProductPage homeProductPage;
     private LoginPage loginPage;
 
